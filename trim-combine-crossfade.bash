@@ -31,6 +31,7 @@ echo 'Building the files array...'
 mapfile -t FILES < <(ls -v ./temp_processed/*.wav)
 
 # 2. Initialize the master with the first file
+echo "Starting with ${FILES[0]}"
 cp "${FILES[0]}" ./combined/master.wav
 
 # 3. Loop through the rest starting from the second file
@@ -55,6 +56,6 @@ echo '************************************'
 echo '**********FINAL CONVERSION**********'
 echo '************************************'
 echo 'Encoding the final file as final_output.mp3...'
-ffmpeg -i ./combined/master.wav -codec:a libmp3lame -q:a 2 ./combined/final_output.mp3 >/dev/null 2>errors.log
+ffmpeg -i ./combined/master.wav -codec:a libmp3lame -q:a 0 ./combined/final_output.mp3 >/dev/null 2>errors.log
 
 echo '**************ALL DONE**************'
